@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost4200")
 @RestController
-@RequestMapping("/eleve")
+@RequestMapping("/api")
 public class EleveController {
 
     private final EleveService eleveService;
@@ -21,24 +21,24 @@ public class EleveController {
         this.eleveService = eleveService ;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/alleleve")
     public ResponseEntity<List<Eleve>> getAllEleve(){
         List<Eleve> allEleve = eleveService.getallEleve();
         return new ResponseEntity(allEleve , HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addeleve")
     public ResponseEntity<Eleve>addEleve(@RequestBody Eleve eleve) {
         Eleve newEleve = eleveService.addEleve(eleve);
         return new  ResponseEntity<>(newEleve , HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateeleve/{id}")
     public ResponseEntity<Eleve>updateEleve(@PathVariable (name = "id") Integer id, @RequestParam String emailE ){
         Eleve updateEleve = eleveService.updateEleve(id, emailE);
         return new  ResponseEntity<>(updateEleve , HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteeleve/{id}")
     public ResponseEntity<?>deleteEleve (@PathVariable Integer id){
         eleveService.deleteEleve(id);
         return new ResponseEntity<>(HttpStatus.OK);

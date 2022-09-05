@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost4200")
 @RestController
-@RequestMapping("/matiere")
+@RequestMapping("/api")
 public class MatiereController {
     private final MatiereService MatiereService;
     @Autowired
@@ -20,24 +20,24 @@ public class MatiereController {
         this.MatiereService = matiereService ;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/allmatier")
     public ResponseEntity<List<Parents>> getAllMatiere(){
         List<Matiere> allMatiere = MatiereService.getallMatiere();
         return new ResponseEntity(allMatiere , HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addmatier")
     public ResponseEntity<Matiere>addMatiere(@RequestBody Matiere matiere) {
         Matiere newMatiere = MatiereService.addMatiere(matiere);
         return new  ResponseEntity<>(newMatiere , HttpStatus.CREATED);
     }
-    @PutMapping("/update")
+    @PutMapping("/updatematier")
     public ResponseEntity<Matiere>updateMatiere(@RequestBody Matiere matiere) {
         Matiere updateMatiere = MatiereService.updateMatiere(matiere);
         return new  ResponseEntity<>(updateMatiere , HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deletematier/{id}")
     public ResponseEntity<?>deleteMatiere (@PathVariable Integer id){
         MatiereService.deleteMatiere(id);
         return new ResponseEntity<>(HttpStatus.OK);

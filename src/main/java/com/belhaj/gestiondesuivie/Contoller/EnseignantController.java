@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost4200")
 @RestController
-@RequestMapping("/Enseignant")
+@RequestMapping("/api")
 public class EnseignantController {
     private final EnseignantService EnseignantService;
     @Autowired
@@ -19,24 +19,24 @@ public class EnseignantController {
         this.EnseignantService = enseignantService ;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/allenseignant")
     public ResponseEntity<List<Enseignant>> getAllEnseignant(){
         List<Enseignant> allEnseignant = EnseignantService.getallEnseignant();
         return new ResponseEntity(allEnseignant , HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addenseignant")
     public ResponseEntity<Enseignant>addEnseignant(@RequestBody Enseignant enseignant) {
         Enseignant newEnseignant = EnseignantService.addEnseignant(enseignant);
         return new  ResponseEntity<>(newEnseignant , HttpStatus.CREATED);
     }
-    @PutMapping("/update")
+    @PutMapping("/updateenseignant")
     public ResponseEntity<Enseignant>updateEnseignant(@RequestBody Enseignant enseignant) {
         Enseignant updateEnseignant = EnseignantService.updateEnseignant(enseignant);
         return new  ResponseEntity<>(updateEnseignant , HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteenseignant/{id}")
     public ResponseEntity<?>deleteEnseignant (@PathVariable Integer id){
         EnseignantService.deleteEnseignant(id);
         return new ResponseEntity<>(HttpStatus.OK);

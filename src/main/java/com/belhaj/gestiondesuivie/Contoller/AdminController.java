@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 public class AdminController {
     private final AdminService adminService;
     @Autowired
@@ -19,25 +19,25 @@ public class AdminController {
         this.adminService = adminservice ;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/alladmin")
     public ResponseEntity<List<Parents>> getAllAdmin(){
         List<Admin> allAdmin = adminService.getallAdmin();
         return new ResponseEntity(allAdmin , HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addadmin")
     public ResponseEntity<Admin>addAdmin(@RequestBody Admin admin) {
         Admin newAdmin = adminService.addAdmin(admin);
         return new  ResponseEntity<>(newAdmin , HttpStatus.CREATED);
     }
     //
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateadmin/{id}")
     public ResponseEntity<Admin>updateAdmin(@PathVariable(name = "id")Integer id, @RequestParam String mdp) {
         Admin updateAdmin = adminService.updateAdmin(id,mdp);
         return new  ResponseEntity<>(updateAdmin , HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteadmin/{id}")
     public ResponseEntity<?>deleteAdmin (@PathVariable Integer id){
         adminService.deleteAdmin(id);
         return new ResponseEntity<>(HttpStatus.OK);

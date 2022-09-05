@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost4200")
 @RestController
-@RequestMapping("/emploi")
+@RequestMapping("/api")
 public class EmploiController {
 
     private final EmploiService emploiService;
@@ -21,22 +21,22 @@ public class EmploiController {
     public EmploiController(EmploiService emploiService) {
         this.emploiService = emploiService;
     }
-    @GetMapping("/all")
+    @GetMapping("/allemploi")
     public ResponseEntity<List<Emplois>> getAllEmplois() {
         List<Emplois> allEmplois = emploiService.getallEmplois();
         return new ResponseEntity(allEmplois, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping("/addemploi")
     public ResponseEntity<Emplois>addEmplois(@RequestBody Emplois emplois) {
         Emplois newEmplois = emploiService.addEmplois(emplois);
         return new ResponseEntity<>(newEmplois, HttpStatus.CREATED);
     }
-    @PutMapping("/update")
+    @PutMapping("/updateemploi")
     public ResponseEntity<Emplois>updateEmplois(@RequestBody Emplois emplois) {
         Emplois updateEmplois = emploiService.updateEmplois(emplois);
         return new ResponseEntity<>(updateEmplois, HttpStatus.CREATED);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteemploi/{id}")
     public ResponseEntity<?>deleteEmplois (@PathVariable Integer id) {
         emploiService.deleteEmplois(id);
         return new ResponseEntity<>(HttpStatus.OK);
