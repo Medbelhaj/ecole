@@ -10,9 +10,10 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "emplois")
-public class Emplois extends Utilisateur{
+public class Emplois{
+  @Id
   private Integer id;
   private Date date;
   private Date heure_de_debut;

@@ -8,9 +8,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "abonnement")
-public class Abonnement extends Utilisateur {
+public class Abonnement{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "abonnement_id")
