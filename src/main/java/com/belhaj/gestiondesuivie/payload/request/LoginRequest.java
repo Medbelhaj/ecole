@@ -4,13 +4,11 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 public class LoginRequest {
-    @NotBlank
+
     private String username;
-    @NotBlank
     private String lastname;
     @NotBlank
     private String email;
-    @NotBlank
     private Date dateNai;
     @NotBlank
     private String password;
